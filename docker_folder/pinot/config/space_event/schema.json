@@ -1,0 +1,39 @@
+{
+  "schemaName": "space_event",
+
+  "dimensionFieldSpecs": [
+    {
+      "name": "KEY",
+      "dataType": "STRING"
+    },
+    {
+      "name": "TIMESTAMP",
+      "dataType": "STRING"
+    },
+    {
+      "name": "EVENT_DATE",
+      "dataType": "STRING"
+    },
+    {
+      "name": "EVENT_HOUR",
+      "dataType": "STRING"
+    },
+    {
+      "name": "EVENT_MINUTE",
+      "dataType": "STRING"
+    },
+    {
+      "name": "TRANCHE_30MIN",
+      "dataType": "STRING"
+    }
+  ],
+
+  "dateTimeFieldSpecs": [
+    {
+      "name": "TIMESTAMP_EPOCH",
+      "dataType": "LONG",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}

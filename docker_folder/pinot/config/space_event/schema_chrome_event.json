@@ -1,0 +1,43 @@
+{
+  "schemaName": "chrome_event",
+
+  "dimensionFieldSpecs": [
+    {
+      "name": "X",
+      "dataType": "INT"
+    },
+    {
+      "name": "Y",
+      "dataType": "INT"
+    },
+    {
+      "name": "PAGENAME",
+      "dataType": "STRING"
+    },
+    {
+      "name": "EVENT_DATETIME",
+      "dataType": "STRING"
+    },
+    {
+      "name": "EVENT_DATE",
+      "dataType": "STRING"
+    },
+    {
+      "name": "TRANCHE_30MIN",
+      "dataType": "STRING"
+    },
+    {
+      "name": "TRANCHE_5MIN",
+      "dataType": "STRING"
+    }
+  ],
+
+  "dateTimeFieldSpecs": [
+    {
+      "name": "TIMESTAMP",
+      "dataType": "LONG",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS"
+    }
+  ]
+}
