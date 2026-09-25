@@ -19,7 +19,7 @@ Step 3- Inside the docker_folder directory run all service
 cd docker_folder
 docker compose up
 ```
-Step 4- After all service are started, open a new terminal then create our kafka topic
+Step 4- After all service are started, open a new terminal , you need to stay in the docker_folder folder to perform these step, then create our kafka topic
 ```bash
 docker compose exec kafka bash
 
@@ -30,7 +30,7 @@ kafka-topics \
     --partitions 4 \
     --replication-factor 1
 ```
-Step 5- Open a new terminal, and create connect to ksqldb with ksqldb client then create all stream that we need to retrieve data from Kafka
+Step 5- Open a new terminal, you need to stay in the docker_folder folder to perform these step, and create connect to ksqldb with ksqldb client then create all stream that we need to retrieve data from Kafka
 ```bash
 docker compose exec ksqldb-cli  ksql http://ksqldb-server:8088
 
@@ -100,10 +100,37 @@ FROM chrome_clicks
 EMIT CHANGES;
 
 ```
+Step 6- Define the schema and pinot table to persist the data from ksqlDB, open an new terminal always stay in the docker_folder folder
+```sh
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d @pinot/config/space_event/schema_chrome_event.json \
+  http://localhost:9010/schemas
 
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d @pinot/config/space_event/tabe_chrome_event.json \
+  http://localhost:9010/tables
+
+
+```
+Step 7- Go to the main folder (streaming_project) then create a python venv, and install all requirements from requirements.txt
+```bash
+python3 -m venv .myvenv
+source .myvenv/bin/activate
+
+pip install -r requirements.txt
+```
+Step 8- Go to the **streaming_project/click_tracker/server** folder, then start our python script who listen data from chrome extension
+```bash
+python producer_browser.py
+```
+Step 9- Deploy our chrome extension
+── content.js
+├── manifest.json
+from **streaming_project/click_tracker**
 
 Once you're finished, tear everything down using the following command:
-
 ```sh
 docker-compose down
 ```
