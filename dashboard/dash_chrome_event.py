@@ -67,6 +67,19 @@ if not df.empty:
 
 
 # =========================
+# Shared Color Mapping
+# =========================
+
+# Create a fixed color map for all unique categories
+category_color_map = {}
+if not df.empty:
+    unique_cats = sorted(df["category"].dropna().unique())
+    # Use Plotly's default qualitative color palette
+    colors = px.colors.qualitative.Plotly
+    category_color_map = {cat: colors[i % len(colors)] for i, cat in enumerate(unique_cats)}
+
+
+# =========================
 # Global statistics
 # =========================
 
@@ -118,6 +131,7 @@ if not df.empty:
         x="TRANCHE_30MIN",
         y="cnt",
         color="category",
+        color_discrete_map=category_color_map,  # Enforce consistent colors
         barmode="group",
         text="cnt"
     )
@@ -152,6 +166,7 @@ if not df.empty:
         x="TRANCHE_5MIN",
         y="cnt",
         color="category",
+        color_discrete_map=category_color_map,  # Enforce consistent colors
         markers=True
     )
 
