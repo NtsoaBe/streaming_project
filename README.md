@@ -121,14 +121,22 @@ source .myvenv/bin/activate
 
 pip install -r requirements.txt
 ```
-Step 8- Go to the **streaming_project/click_tracker/server** folder, then start our python script who listen data from chrome extension
+
+# Run our chrome extension and our python deamon in my ubuntu 20.04
+Step 1- Go to the **streaming_project/click_tracker/server** folder, then start our python script who listen data from chrome extension
 ```bash
 python producer_browser.py
 ```
-Step 9- Deploy our chrome extension
-── content.js
-├── manifest.json
-from **streaming_project/click_tracker**
+
+Step 2- Deploy our chrome extension (content.js + manifest.json) from **streaming_project/click_tracker** you can find [here](https://developer.chrome.com/docs/webstore/publish?utm_source=gemini)
+
+
+# Start our realtime dashboard to see the result
+Now everything work, it's time to run our realtime dashboard,
+go to **streaming_project/dashboard** folder, then run
+```sh
+streamlit run dash_chrome_event.py
+```
 
 Once you're finished, tear everything down using the following command:
 ```sh
